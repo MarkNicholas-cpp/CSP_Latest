@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rice Seller Form</title>
+
+</head>
+<body>
+    <div class="form-container">
+        <h1>Rice Seller Form</h1>
+        <form>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="rice-type">Rice Type:</label>
+                <select id="rice-type" name="rice-type" required>
+                    <option value="" disabled selected>Select Rice Type</option>
+                    <option value="Basmati Rice">Basmati Rice</option>
+                    <option value="Jasmine Rice">Jasmine Rice</option>
+                    <option value="Brown Rice">Brown Rice</option>
+                    <option value="White Rice">White Rice</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount (in kg):</label>
+                <input type="number" id="amount" name="amount" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+<router-outlet></router-outlet>
