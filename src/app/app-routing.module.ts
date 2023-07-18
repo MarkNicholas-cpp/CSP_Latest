@@ -9,21 +9,23 @@ import { AboutUsComponent } from './navbar/about-us/about-us.component';
 import { SellorbuyComponent } from './navbar/sellorbuy/sellorbuy.component';
 import { SellerHomeComponent } from './navbar/seller-home/seller-home.component';
 import { BuyerHomeComponent } from './navbar/buyer-home/buyer-home.component';
+import { PaymentComponent } from './navbar/payment/payment.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'navbar',pathMatch:'full'},
   {path:'navbar',component:NavbarComponent,
 children:[
-  {path:'',redirectTo:'main-page',pathMatch:'full'},
-  {path:'main-page',component:MainPageComponent},
-  {path:'login',component:LoginComponent},
-  {path:'register',component:RegisterComponent},
-  {path:'contact-us',component:ContactUsComponent},
-  {path:'about-us',component:AboutUsComponent},
-  {path:'sellorbuy',component:SellorbuyComponent},
-  {path:'seller-home',component:SellerHomeComponent},
-  {path:'buyer-home',component:BuyerHomeComponent}
-]}
+    {path:'',redirectTo:'main-page',pathMatch:'full'},
+    {path:'main-page',component:MainPageComponent},
+    {path:'login',component:LoginComponent},
+    {path:'register',component:RegisterComponent},
+    {path:'contact-us',component:ContactUsComponent},
+    {path:'about-us',component:AboutUsComponent},
+    {path:'sellorbuy',component:SellorbuyComponent},
+    {path:'seller-home',component:SellerHomeComponent},
+    {path:'buyer-home',component:BuyerHomeComponent},
+    {path:'Payment',component:PaymentComponent}
+  ]}
 ];
 
 @NgModule({

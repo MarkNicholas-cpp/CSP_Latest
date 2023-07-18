@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  username: string='';
+  password: string='';
+  confirmPassword: string='';
 
+  submitForm() {
+    console.log('Form submitted!');
+  }
 }
