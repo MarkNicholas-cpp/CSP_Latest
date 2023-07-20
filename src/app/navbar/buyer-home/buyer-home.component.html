@@ -1,81 +1,110 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Rice Seller Dashboard</title>
-  </head>
-  <body>
-   
+<div class="container">
+  <h2>Products</h2>
+  <ul class="product-list" *ngFor="let product of products">
+    <li>
+      <h3>{{product.RICETYPE}}</h3>
+      <p>Price: {{ product.AMOUNT | currency:'INR' }}</p>
+      <p>In Stock: {{product.QUANTITY}}Kg</p>
+      <button (click)="addToCart(product)" type="button" class="btn btn-primary" data-bs-toggle="modal"
+        data-bs-target="#exampleModalCenter">
+        Add to Cart
+      </button>
 
-    <div class="container">
-      <h2>Products</h2>
-      <ul class="product-list">
-        <li>
-          <h3>Product Name</h3>
-          <p>Price: $10</p>
-          <p>In Stock: 10</p>
-          <a href="#">Add To Cart</a>
-        </li>
-        <li>
-          <h3>Product Name</h3>
-          <p>Price: $20</p>
-          <p>In Stock: 5</p>
-          <a href="#">Add To Cart</a>
-        </li>
-        <li>
-          <h3>Product Name</h3>
-          <p>Price: $15</p>
-          <p>In Stock: 8</p>
-          <a href="#">Add To Cart</a>
-        </li>
-      </ul>
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Rice Customize</h5>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p class="text-danger"><small>*The Price of the rice is calculated according to the todays stats</small>
+              </p>
+              <form (ngSubmit)="Buy(Form)" #Form="ngForm">
+                <div class="form-group">
+                  <label for="RICETYPE" class="form-label">Rice Name</label>
+                  <input type="text" name="Name" id="RICETYPE" [ngModel]="Product.RICETYPE" class="form-control"
+                    disabled>
+                </div>
+                <div class="form-group">
+                  <label for="Amount" class="form-label">Amount</label>
+                  <div class="d-flex gap-1">
+                    <input type="text"  name="AMOUNT" id="AMOUNT" [ngModel]="todaysPriceOfRice |currency:'INR'"
+                      class="form-control align-self-start" disabled>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="QUANTITY" class="form-label">Quantity (in KG)</label>
+                  <div class="d-flex align-items-center gap-1">
+                    <input type="range" name="QUANTITY" id="Quantity" class="form-range w-100" min="0"
+                      [max]="Product.QUANTITY" step="1" [(ngModel)]="requestedQuantity" #Quantity>
+                    <input type="text" name="ShowQuantity" id="ShowQuantity" class="form-control w-25"
+                      [(ngModel)]="Quantity.value">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="TotalAmt" class="form-label">Total Amount</label>
+                  <input type="text" class="form-control" name="TotalAmt" id="TotalAmt"
+                    [value]="requestedQuantity * todaysPriceOfRice | currency:'INR'" disabled>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Buy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
 
-      <h2>Orders</h2>
-      <ul class="orders-list">
-        <li>
-          <h3>Order #12345</h3>
-          <p>Customer: John Smith</p>
-          <p>Product: Product Name</p>
-          <p>Quantity: 2</p>
-          <a href="#">View Details</a>
-        </li>
-        <li>
-          <h3>Order #12346</h3>
-          <p>Customer: Jane Doe</p>
-          <p>Product: Product Name</p>
-          <p>Quantity: 1</p>
-          <a href="#">View Details</a>
-        </li>
-        <li>
-          <h3>Order #12347</h3>
-          <p>Customer: Bob Johnson</p>
-          <p>Product: Product Name</p>
-          <p>Quantity: 5</p>
-          <a href="#">View Details</a>
-        </li>
-      </ul>
+  <h2>Orders</h2>
+  <ul class="orders-list">
+    <li>
+      <h3>Order #12345</h3>
+      <p>Customer: John Smith</p>
+      <p>Product: Product Name</p>
+      <p>Quantity: 2</p>
+      <a href="#">View Details</a>
+    </li>
+    <li>
+      <h3>Order #12346</h3>
+      <p>Customer: Jane Doe</p>
+      <p>Product: Product Name</p>
+      <p>Quantity: 1</p>
+      <a href="#">View Details</a>
+    </li>
+    <li>
+      <h3>Order #12347</h3>
+      <p>Customer: Bob Johnson</p>
+      <p>Product: Product Name</p>
+      <p>Quantity: 5</p>
+      <a href="#">View Details</a>
+    </li>
+  </ul>
 
-      <h2>Sales Stats</h2>
-      <ul class="sales-stats">
-        <li>
-          <h3>Total Sales</h3>
-          <p>$1000</p>
-        </li>
-        <li>
-          <h3>Top Selling Product</h3>
-          <p>Product Name</p>
-        </li>
-        <li>
-          <h3>Lowest Selling Product</h3>
-          <p>Product Name</p>
-        </li>
-        <li>
-          <h3>Out of Stock Products</h3>
-          <p>Product Name</p>
-        </li>
-      </ul>
-    </div>
-
-  </body>
-</html>
-
+  <h2>Sales Stats</h2>
+  <ul class="sales-stats">
+    <li>
+      <h3>Total Sales</h3>
+      <p>$1000</p>
+    </li>
+    <li>
+      <h3>Top Selling Product</h3>
+      <p>Product Name</p>
+    </li>
+    <li>
+      <h3>Lowest Selling Product</h3>
+      <p>Product Name</p>
+    </li>
+    <li>
+      <h3>Out of Stock Products</h3>
+      <p>Product Name</p>
+    </li>
+  </ul>
+</div>
 <router-outlet></router-outlet>

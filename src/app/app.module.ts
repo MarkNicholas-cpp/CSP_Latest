@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import {HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { SellorbuyComponent } from './navbar/sellorbuy/sellorbuy.component';
 import { SellerHomeComponent } from './navbar/seller-home/seller-home.component';
 import { BuyerHomeComponent } from './navbar/buyer-home/buyer-home.component';
 import { PaymentComponent } from './navbar/payment/payment.component';
+import { WeightPipePipe } from './Pipes/weight-pipe.pipe';  
 
 @NgModule({
   declarations: [
@@ -27,12 +29,14 @@ import { PaymentComponent } from './navbar/payment/payment.component';
     SellorbuyComponent,
     SellerHomeComponent,
     BuyerHomeComponent,
-    PaymentComponent
+    PaymentComponent,
+    WeightPipePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
